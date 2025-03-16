@@ -93,39 +93,39 @@ The tests verify:
 ## Local tests
 
 ### Init logs (v1)
-VaultImplementationV1 deployed at: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-VersionControlBeacon deployed at: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
-VaultFactory deployed at: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
-Vault for Token1 deployed at: 0x75537828f2ce51be7289709686A69CbFDbB714F1
-Vault for Token2 deployed at: 0xE451980132E65465d0a498c53f0b5227326Dd73F
-Vault for Token3 deployed at: 0x5392A33F7F677f59e833FEBF4016cDDD88fF9E67
+- VaultImplementationV1 deployed at: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+- VersionControlBeacon deployed at: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+- VaultFactory deployed at: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
+- Vault for Token1 deployed at: 0x75537828f2ce51be7289709686A69CbFDbB714F1
+- Vault for Token2 deployed at: 0xE451980132E65465d0a498c53f0b5227326Dd73F
+- Vault for Token3 deployed at: 0x5392A33F7F677f59e833FEBF4016cDDD88fF9E67
 
 ### Check, send, check to Token1
-cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
-cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "deposit(uint256)" 100 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
-cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
+- cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
+- cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "deposit(uint256)" 100 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
+- cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
 
 ### Migrate to V2 logs
-VaultImplementationV2 deployed at: 0xa513E6E4b8f2a923D98304ec87F64353C4D5C853
-Current implementation: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-Beacon upgraded to V2 implementation
-New implementation: 0xa513E6E4b8f2a923D98304ec87F64353C4D5C853
+- VaultImplementationV2 deployed at: 0xa513E6E4b8f2a923D98304ec87F64353C4D5C853
+- Current implementation: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+- Beacon upgraded to V2 implementation
+- New implementation: 0xa513E6E4b8f2a923D98304ec87F64353C4D5C853
 
 ### Check Token1
-cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
+- cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
 
 ### Check withdraw and balance
-cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "withdraw(uint256 amount)" 42 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
-cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
+- cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "withdraw(uint256 amount)" 42 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
+- cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
 
 ### Move to versions
-cast call 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "implementation() returns (address)" --rpc-url http://localhost:8545
-cast call 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "getVersionCount() returns (uint256)" --rpc-url http://localhost:8545
-forge script script/RollbackToVersion.s.sol --rpc-url http://localhost:8545 --broadcast
-cast call 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "implementation() returns (address)" --rpc-url http://localhost:8545
-next should fail:
-cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "withdraw(uint256 amount)" 42 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
-set VERSION_INDEX to 1
-forge script script/RollbackToVersion.s.sol --rpc-url http://localhost:8545 --broadcast
-cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "withdraw(uint256 amount)" 42 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
-cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
+- cast call 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "implementation() returns (address)" --rpc-url http://localhost:8545
+- cast call 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "getVersionCount() returns (uint256)" --rpc-url http://localhost:8545
+- forge script script/RollbackToVersion.s.sol --rpc-url http://localhost:8545 --broadcast
+- cast call 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "implementation() returns (address)" --rpc-url http://localhost:8545
+- next should fail:
+- cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "withdraw(uint256 amount)" 42 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
+- set VERSION_INDEX to 1
+- forge script script/RollbackToVersion.s.sol --rpc-url http://localhost:8545 --broadcast
+- cast send 0x75537828f2ce51be7289709686A69CbFDbB714F1 "withdraw(uint256 amount)" 42 --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY
+- cast call 0x75537828f2ce51be7289709686A69CbFDbB714F1 "getBalance() returns (uint256)" --rpc-url http://localhost:8545
